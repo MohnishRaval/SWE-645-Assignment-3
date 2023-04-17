@@ -5,22 +5,36 @@
     // Function movieTicket() decides if the user has won raffle ticket or not
     
     function viewAllSurveys(){
-    	fetch('/form/viewAllRecords', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-          }).then(response => {
-            if (response.ok) {
-              alert('All Surveys records fetched successfully!');
-            } else {
-              alert('Failed to fetch all Survey records.');
-            }
-          }).catch(error => {
-            console.error(error);
-            alert('Failed to fetch all Survey records.');
-          });
+  fetch('/form/viewAllRecords', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  }).then(response => {
+    if (response.ok) {
+      alert('All Surveys records fetched successfully!');
+      return response.json();
+    } else {
+      alert('Failed to fetch all Survey records.');
     }
+  }).then(records => {
+    // Create a new window to display the survey records
+    const newWindow = window.open();
+    // Create an HTML table to display the survey records
+    let html = '<table><thead><tr><th>First Name</th><th>Last Name</th><th>Won Raffle Ticket</th><th>Date</th></tr></thead><tbody>';
+    records.forEach(record => {
+       const won = record[2] ? 'Yes' : 'No';
+      html += `<tr><td>${record[0]}</td><td>${record[1]}</td><td>${won}</td><td>${record[3]}</td></tr>`;
+    });
+    html += '</tbody></table>';
+    // Set the HTML content of the new window to the table
+    newWindow.document.body.innerHTML = html;
+  }).catch(error => {
+    console.error(error);
+    alert('Failed to fetch all Survey records.');
+  });
+}
+
     
     
     function movieTicket() {
@@ -215,6 +229,7 @@
             <div class="submit1">
               <input id="submitbtn" type="submit" value="Submit">
               <input type="reset" value="Cancel">
+              <button onclick="viewAllSurveys()">viewAllRecords</button>
             </div>
           </form>
         </div>
