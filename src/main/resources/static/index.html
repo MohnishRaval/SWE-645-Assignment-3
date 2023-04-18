@@ -21,7 +21,7 @@
     // Create a new window to display the survey records
     const newWindow = window.open();
     // Create an HTML table to display the survey records
-    let html = '<table><thead><tr><th>First Name</th><th>Last Name</th><th>Won Raffle Ticket</th><th>Date</th></tr></thead><tbody>';
+    let html = '<table border="1px solid black"><thead><tr><th>First Name</th><th>Last Name</th><th>Won Raffle Ticket</th><th>Date</th></tr></thead><tbody>';
     records.forEach(record => {
        const won = record[2] ? 'Yes' : 'No';
       html += `<tr><td>${record[0]}</td><td>${record[1]}</td><td>${won}</td><td>${record[3]}</td></tr>`;
@@ -38,9 +38,16 @@
     
     
     function movieTicket() {
-      let invalidCond = false;
-      let cond = false;
-      let validCond = false;
+      let isSubmitFailed=true;
+      let isRaffleWon=false;
+      const raffleWonAlertMessage="Congratulations! You won a free movie ticket.";
+      const raffleLostAlertMessage="Sorry, you didn't win a free movie ticket.";
+      const invalidNumberAlertMessage="Raffle Fields Invalid:Please enter at least 10 comma separated numbers from 1 to 100 in the Raffle field.";
+      const selectRaffleField = document.getElementById("raffle");
+      const inputtedRaffleNumbers = selectRaffleField.value.split(",").map(num => parseInt(num.trim()));
+      const validNumberCheck = inputtedRaffleNumbers.filter(num => num >= 1 && num <= 100);	
+      const targetsum=50;
+      console.log(validNumberCheck);
       let response = {
         firstName: document.getElementById("firstName").value,
         lastName: document.getElementById("lastName").value,
@@ -58,61 +65,34 @@
         won: false,
         numbersEntered: "",
       };
-      
-      const selectRaffleField = document.getElementById("raffle");
-      const inputtedRaffleNumbers = selectRaffleField.value.split(",").map(num => parseInt(num.trim()));
-      const validNumberCheck = inputtedRaffleNumbers.filter(num => num >= 1 && num <= 100);
-      
-      if (inputtedRaffleNumbers.length === 1 && isNaN(inputtedRaffleNumbers[0])) {
-        alert("Sorry, you didn't win a free movie ticket.");
-        response.won = false;
-        cond = true;
-        response.numbersEntered = validNumberCheck.join(", ");
-        invalidCond = true;
-      }
-      
-        if (validNumberCheck.length >= 10) {
-          const lotteryNumbers = new Set([10, 20, 30, 40, 50]); //Defining Lottery Winning Numbers
-          const matchingNumbers = validNumberCheck.filter(num => lotteryNumbers.has(num)); //checks number of matched numbers
-          const matchingNumberLength = matchingNumbers.length; //Length of the matched numbers
-          // Winning Condition: If atleast two numbers are matched with the lotteryNUmbers
-          if (matchingNumberLength >= 2) {
-            alert("Congratulations! You won a free movie ticket.");
-            response.won = true;
-          } else {
-            alert("Raffle field Empty:Sorry, you didn't win a free movie ticket.");
-          }
-          response.numbersEntered = validNumberCheck.join(", ");
-          validCond = true;
-        } else {
-          // Condition to make sure that only numbers are entered from 1 to 100 otherwise alert will be shown
-          if (!cond) {
-            alert("Raffle Fields Invalid:Please enter at least 10 comma separated numbers from 1 to 100 in the Raffle field.");
-          }
-          invalidCond1 = true;
-        }
- 		
-       console.log("latest:"+response);
-      if (invalidCond == false && validCond == true) {
-        fetch('/form/submit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(response)
-        }).then(response => {
-          if (response.ok) {
-            alert('Form submitted successfully!');
-          } else {
-            alert('Failed to submit form.');
-          }
-        }).catch(error => {
-          console.error(error);
-          alert('An error occurred while submitting the form.');
-        });
-        return true;
+      //Raffle field is empty
+      if(inputtedRaffleNumbers.length === 1 && isNaN(inputtedRaffleNumbers[0])){
+    	  isSubmitFailed=false;
       } else{
-    	return false;
+    	  if(validNumberCheck.length >= 4){
+    		  isSubmitFailed=false;
+    		  let curr_sum=0;
+    		  for (let i = 0; i < validNumberCheck.length; i++) {
+    			  curr_sum += validNumberCheck[i];
+    			}
+    		  if(curr_sum>=targetsum){
+    			  isRaffleWon=true;
+    			  isSubmitFailed=false;
+    		  }
+    	  } else{
+    		  isSubmitFailed=true;
+    	  }
+      }
+      if(isSubmitFailed==true){
+    	  alert(invalidNumberAlertMessage);
+    	  return false;
+      } else{
+    	  if(isRaffleWon==true){
+    		  alert(raffleWonAlertMessage);
+    	  }else{
+    		  alert(raffleLostAlertMessage);
+    	  }
+    	  return true;
       }
     }
   </script>
