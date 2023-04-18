@@ -6,17 +6,21 @@ pipeline {
     agent any
     stages{
         stage('Build Maven'){
-            steps{
+            script{
+                steps{
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/MohnishRaval/SWE-645-Assignment-3']]])
                 sh 'mvn clean install'
             }
+          }  
         }
         stage('Build docker image'){
-            steps{
+            script{
+                steps{
                  docker.withRegistry('',registryCredential){
                   def customImage = docker.build("19982707/swe-assignment-3:${env.TIMESTAMP}")
                }
             }
+            }    
         }
         stage('Push Image to Dockerhub') {
          steps {
