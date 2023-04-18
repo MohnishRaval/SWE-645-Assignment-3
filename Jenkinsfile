@@ -8,13 +8,15 @@ pipeline {
    stages {
     stage('Maven Clean') {
             steps {
-                sh 'mvn clean'
+                 withMaven(maven: 'Maven 3.6.3', mavenSettingsConfig: 'my-maven-settings') {
+                    sh 'mvn clean'
+        }
             }
         }
         stage('Maven Install') {
-            steps {
-                sh 'mvn install'
-            }
+            withMaven(maven: 'Maven 3.6.3', mavenSettingsConfig: 'my-maven-settings') {
+            sh 'mvn install'
+        }
         }
       stage('Build Docker Image') {
          steps {
