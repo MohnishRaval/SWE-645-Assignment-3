@@ -4,19 +4,24 @@ pipeline {
         TIMESTAMP = new Date().format("yyyyMMdd_HHmmss")
     }
    agent any
+   tools {
+    maven 'Maven-3.6.3'
+}
 
    stages {
     stage('Maven Clean') {
             steps {
-                 withMaven(maven: 'Maven 3.6.3', mavenSettingsConfig: 'my-maven-settings') {
-                    sh 'mvn clean'
-        }
+               script{
+                sh 'mvn clean'
+               }
             }
         }
         stage('Maven Install') {
-            withMaven(maven: 'Maven 3.6.3', mavenSettingsConfig: 'my-maven-settings') {
-            sh 'mvn install'
-        }
+            steps {
+               script{
+                sh 'mvn install'
+            }
+            }
         }
       stage('Build Docker Image') {
          steps {
