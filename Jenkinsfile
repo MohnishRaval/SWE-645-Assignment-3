@@ -1,6 +1,9 @@
 pipeline {
    environment {
         registryCredential = 'dockerhub'
+        DB_URL=credentials('DB_URL')
+        DB_PASSWORD=credentials('DB_PASSWORD')
+        DB_USER=credentials('DB_USER')
         TIMESTAMP = new Date().format("yyyyMMdd_HHmmss")
     }
    agent any
@@ -19,7 +22,8 @@ pipeline {
         stage('Maven Install') {
             steps {
                script{
-                sh 'mvn install'
+                sh 'mvn install -DDB_URL=${DB_URL} -DDB_USER=${DB_USER} -DDB_PASSWORD=${DB_PASSWORD}'
+               //  mvn install -DDB_URL=${params.DB_URL} -DDB_USER=${params.DB_USER} -DDB_PASSWORD=${params.DB_PASSWORD}
             }
             }
         }
