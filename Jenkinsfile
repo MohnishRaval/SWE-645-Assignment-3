@@ -22,7 +22,7 @@ pipeline {
         stage('Maven Install') {
             steps {
                script{
-                sh 'mvn install -DDB_URL=${DB_URL} -DDB_USER=${DB_USER} -DDB_PASSWORD=${DB_PASSWORD}'
+                sh 'mvn install'
                //  mvn install -DDB_URL=${params.DB_URL} -DDB_USER=${params.DB_USER} -DDB_PASSWORD=${params.DB_PASSWORD}
             }
             }
