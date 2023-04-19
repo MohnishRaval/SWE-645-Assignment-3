@@ -41,7 +41,7 @@ pipeline {
          steps {
             script{
                docker.withRegistry('',registryCredential){
-                  sh "sudo docker push 19982707/19982707/swe-assignment-3:${env.TIMESTAMP}"
+                  sh "docker push 19982707/19982707/swe-assignment-3:${env.TIMESTAMP}"
                }
             }
          }
