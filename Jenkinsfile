@@ -46,5 +46,12 @@ pipeline {
             }
          }
       }
+      stage('Deploying to Rancher to single node(deployed in 3 replicas)') {
+         steps {
+            script{
+               sh "kubectl set image deployment/spring-deployment container-0=19982707/swe-assignment-3:${env.TIMESTAMP}"
+            }
+         }
+      }
    }
 }
