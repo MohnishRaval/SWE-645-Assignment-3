@@ -1,4 +1,4 @@
-# SWE-645-Assignment-3 private repo
+# SWE-645-Assignment-3 private repository
 
 # Docker commands for build and running image locally
 
