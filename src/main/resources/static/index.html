@@ -3,13 +3,16 @@
   <script>
     "use strict";
     // Function movieTicket() decides if the user has won raffle ticket or not
-    
+    const url = window.location.hostname;
+  	const token = 'Bearer token-j2lmq:m8ckms2sx7zfqlzc82jx8gxc98l5j5twgn6g4rzp4dbrqwtlfxzhf9';
+  	const headers = {'Content-Type': 'application/json'};
+  	if (url.indexOf('localhost:8080') === -1) {
+  	    headers['Authorization'] = token;
+  	  }
     function viewAllSurveys(){
   fetch('/form/viewAllRecords', {
     method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    },
+    headers: headers,
   }).then(response => {
     if (response.ok) {
       alert('All Surveys records fetched successfully!');
@@ -89,9 +92,25 @@
       } else{
     	  if(isRaffleWon==true){
     		  alert(raffleWonAlertMessage);
+    		  response.won=true;
     	  }else{
     		  alert(raffleLostAlertMessage);
+    		  response.won=false;
     	  }
+    	  fetch('/form/submit', {
+              method: 'POST',
+              headers: headers,
+              body: JSON.stringify(response)
+            }).then(response => {
+              if (response.ok) {
+                alert('Form submitted successfully!');
+              } else {
+                alert('Failed to submit form.');
+              }
+            }).catch(error => {
+              console.error(error);
+              //alert('An error occurred while submitting the form.');
+            });
     	  return true;
       }
     }
