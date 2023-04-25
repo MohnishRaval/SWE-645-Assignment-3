@@ -38,7 +38,7 @@ public class APIController {
 	
 	
 	@GetMapping(path="form/viewAllRecords", produces = "application/json")
-	public ResponseEntity<List<?>> getSurveyData() {
+	public ResponseEntity<String> getSurveyData() {
 	    List<?> data = surveyservice.getSurveyData();
 	    ObjectMapper objectMapper = new ObjectMapper();
 	    String jsonString = null;
@@ -49,8 +49,9 @@ public class APIController {
 	    }
 	    HttpHeaders responseHeaders = new HttpHeaders();
 	    responseHeaders.set("Content-Type", "application/json");
-	    return new ResponseEntity<>(data, responseHeaders, HttpStatus.OK);
+	    return new ResponseEntity<>(jsonString, responseHeaders, HttpStatus.OK);
 	}
+
 
 	@PostMapping("/form/submit")
 	public ResponseEntity<?> submitForm(@RequestBody FormDTO formDTO) {
