@@ -6,13 +6,16 @@
     const url = window.location.hostname;
   	const token = 'Bearer token-j2lmq:m8ckms2sx7zfqlzc82jx8gxc98l5j5twgn6g4rzp4dbrqwtlfxzhf9';
   	const headers = {'Content-Type': 'application/json'};
-  	if (url.indexOf('localhost:8080') === -1) {
-  	    headers['Authorization'] = token;
-  	  }
+  	//if (url.indexOf('localhost:8080') === -1) {
+  	  //  headers['Authorization'] = token;
+  	  //}
   	function viewAllSurveys(){
   	  fetch('/form/viewAllRecords', {
   	    method: 'GET',
-  	    headers: headers,
+  	  	headers: {
+  	      'Content-Type': 'application/json',
+  	      'Authorization': token
+  	    }
   	  }).then(response => {
   	    if (response.ok) {
   	      alert('All Surveys records fetched successfully!');
