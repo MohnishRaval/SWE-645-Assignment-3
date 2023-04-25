@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.SWE645Assignment3.dto.*;
 import com.example.SWE645Assignment3.model.*;
@@ -31,8 +33,9 @@ public class APIController {
 	private SurveyService surveyservice;
 	
 	
-	@GetMapping("form/viewAllRecords")
+	@GetMapping(path="form/viewAllRecords",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<?> getSurveyData() {
+//		System.out.println(surveyservice.getSurveyData().getClass().getTypeName());
 		return surveyservice.getSurveyData();
     }
 	@PostMapping("/form/submit")
