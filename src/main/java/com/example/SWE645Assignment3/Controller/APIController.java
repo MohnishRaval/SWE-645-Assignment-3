@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.SWE645Assignment3.dto.*;
 import com.example.SWE645Assignment3.model.*;
 import com.example.SWE645Assignment3.repository.*;
 import com.example.SWE645Assignment3.service.SurveyService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 public class APIController {
@@ -33,11 +37,21 @@ public class APIController {
 	private SurveyService surveyservice;
 	
 	
-	@GetMapping(path="form/viewAllRecords",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<?> getSurveyData() {
-//		System.out.println(surveyservice.getSurveyData().getClass().getTypeName());
-		return surveyservice.getSurveyData();
-    }
+	@GetMapping(path="form/viewAllRecords", produces = "application/json")
+	public ResponseEntity<List<?>> getSurveyData() {
+	    List<?> data = surveyservice.getSurveyData();
+	    ObjectMapper objectMapper = new ObjectMapper();
+	    String jsonString = null;
+	    try {
+	        jsonString = objectMapper.writeValueAsString(data);
+	    } catch (JsonProcessingException e) {
+	        e.printStackTrace();
+	    }
+	    HttpHeaders responseHeaders = new HttpHeaders();
+	    responseHeaders.set("Content-Type", "application/json");
+	    return new ResponseEntity<>(data, responseHeaders, HttpStatus.OK);
+	}
+
 	@PostMapping("/form/submit")
 	public ResponseEntity<?> submitForm(@RequestBody FormDTO formDTO) {
 	    // map fields from FormDTO to Student entity
