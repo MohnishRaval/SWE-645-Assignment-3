@@ -38,18 +38,9 @@ public class APIController {
 	
 	
 	@GetMapping(path="form/viewAllRecords", produces = "application/json")
-	public ResponseEntity<String> getSurveyData() {
-	    List<?> data = surveyservice.getSurveyData();
-	    ObjectMapper objectMapper = new ObjectMapper();
-	    String jsonString = null;
-	    try {
-	        jsonString = objectMapper.writeValueAsString(data);
-	    } catch (JsonProcessingException e) {
-	        e.printStackTrace();
-	    }
-	    HttpHeaders responseHeaders = new HttpHeaders();
-	    responseHeaders.set("Content-Type", "application/json");
-	    return new ResponseEntity<>(jsonString, responseHeaders, HttpStatus.OK);
+	public List<?> getSurveyData() {
+	    System.out.println(surveyservice.getSurveyData().getClass());
+	    return surveyservice.getSurveyData();
 	}
 
 
