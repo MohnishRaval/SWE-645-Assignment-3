@@ -1,5 +1,9 @@
 package com.example.SWE645Assignment3.Controller;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +22,8 @@ import com.example.SWE645Assignment3.repository.*;
 import com.example.SWE645Assignment3.service.SurveyService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import aj.org.objectweb.asm.Type;
 
 @RestController
 public class APIController {
@@ -38,10 +44,25 @@ public class APIController {
 	
 	
 	@GetMapping(path="form/viewAllRecords", produces = "application/json")
-	public List<?> getSurveyData() {
-	    System.out.println(surveyservice.getSurveyData().getClass());
-	    return surveyservice.getSurveyData();
+	public ResponseEntity<List<ViewAllRecords>> getSurveyData() {
+	    List<ViewAllRecords> records = new ArrayList<>();
+	    List<Object[]> data = surveyrepo.getSurveyData();
+	    
+	    for (Object[] row : data) {
+	        String firstName = (String) row[0];
+	        String lastName = (String) row[1];
+	        Boolean won = (Boolean) row[2];
+	       
+	        String dateString = row[3].toString();
+	        LocalDate date = LocalDate.parse(dateString);
+	        
+	        ViewAllRecords record = new ViewAllRecords(firstName, lastName, won, date);
+	        records.add(record);
+	    }
+	    
+	    return new ResponseEntity<>(records, HttpStatus.OK);
 	}
+
 
 
 	@PostMapping("/form/submit")

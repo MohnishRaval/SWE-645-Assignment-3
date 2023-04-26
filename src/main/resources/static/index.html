@@ -9,53 +9,53 @@
   	//if (url.indexOf('localhost:8080') === -1) {
   	  //  headers['Authorization'] = token;
   	  //}
-  	function viewAllSurveys(){
-  	  fetch('/form/viewAllRecords', {
-  	    method: 'GET',
-  	  	headers: {
-  	      'Content-Type': 'application/json; charset=utf-8',
-  	      'Authorization': token,
-  	       'Accept': 'application/json'
-  	    }
-  	  }).then(response => {
-  		  console.log(response);
-  	    if (response.ok) {
-  	      alert('All Surveys records fetched successfully!');
-  	      return response.json();
-  	    } else {
-  	      alert('Failed to fetch all Survey records.');
-  	    }
-  	  }).then(records => {
-  	    // Create an HTML table to display the survey records
-  	    //let html = '<table border="1px solid black"><thead><tr><th>First Name</th><th>Last Name</th><th>Won Raffle Ticket</th><th>Date</th></tr></thead><tbody>';
-  	    let html = '<table border="1px solid black" style="margin: 0 auto;"><thead><tr><th>First Name</th><th>Last Name</th><th>Won Raffle Ticket</th><th>Survey Date</th></tr></thead><tbody>';
-  	    records.forEach(record => {
-  	       const won = record[2] ? 'Yes' : 'No';
-  	      html += `<tr><td>${record[0]}</td><td>${record[1]}</td><td>${won}</td><td>${record[3]}</td></tr>`;
-  	    });
-  	    html += '</tbody></table>';
-  	    // Set the HTML content of the modal popup to the table
-  	    const modal = document.getElementById("myModal");
-  	    const modalContent = document.getElementById("table-container");
-  	    modalContent.innerHTML = html;
-  	    // Open the modal popup
-  	    modal.style.display = "block";
-  	    // Close the modal popup when the user clicks on the close button
-  	    const closeBtn = document.getElementsByClassName("close")[0];
-  	    closeBtn.onclick = function() {
-  	      modal.style.display = "none";
-  	    }
-  	    // Close the modal popup when the user clicks anywhere outside of it
-  	    window.onclick = function(event) {
-  	      if (event.target == modal) {
-  	        modal.style.display = "none";
-  	      }
-  	    }
-  	  }).catch(error => {
-  	    console.error(error);
-  	    alert('Failed to fetch all Survey records.');
-  	  });
-  	}
+  	function viewAllSurveys() {
+  fetch('/form/viewAllRecords', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Authorization': token,
+      'Accept': 'application/json'
+    }
+  }).then(response => {
+    console.log(response);
+    if (response.ok) {
+      alert('All Surveys records fetched successfully!');
+      return response.json();
+    } else {
+      alert('Failed to fetch all Survey records.');
+    }
+  }).then(records => {
+    // Create an HTML table to display the survey records
+    let html = '<table border="1px solid black" style="margin: 0 auto;"><thead><tr><th>First Name</th><th>Last Name</th><th>Won Raffle Ticket</th><th>Survey Date</th></tr></thead><tbody>';
+    records.forEach(record => {
+      const won = record.won ? 'Yes' : 'No';
+      html += `<tr><td>${record.firstName}</td><td>${record.lastName}</td><td>${won}</td><td>${record.surveyDate}</td></tr>`;
+    });
+    html += '</tbody></table>';
+    // Set the HTML content of the modal popup to the table
+    const modal = document.getElementById("myModal");
+    const modalContent = document.getElementById("table-container");
+    modalContent.innerHTML = html;
+    // Open the modal popup
+    modal.style.display = "block";
+    // Close the modal popup when the user clicks on the close button
+    const closeBtn = document.getElementsByClassName("close")[0];
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+    }
+    // Close the modal popup when the user clicks anywhere outside of it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  }).catch(error => {
+    console.error(error);
+    alert('Failed to fetch all Survey records.');
+  });
+}
+
 
 
     

@@ -12,7 +12,7 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 	@Query(nativeQuery = true, value = "SELECT stu.first_name AS firstName, stu.last_name AS lastName, raf.won AS won_raffleTickets, sur.date AS survey_date "
 			+ "FROM students stu, raffles raf, surveys sur "
 			+ "WHERE stu.student_id = sur.student_id AND stu.student_id = raf.student_id")
-	 List<?> getSurveyData();
+	 List<Object[]> getSurveyData();
 }
 
 //@Query(nativeQuery = true, value = "SELECT stu.first_name AS firstName, stu.last_name AS lastName, raf.won AS won_raffleTickets, sur.date AS survey_date "

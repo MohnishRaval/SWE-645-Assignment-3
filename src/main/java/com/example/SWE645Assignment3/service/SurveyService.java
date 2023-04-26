@@ -14,7 +14,6 @@ public class SurveyService{
     private SurveyRepository surveyRepo;
 	
 	 public List<?> getSurveyData() {
-			 System.out.println(surveyRepo.getSurveyData());
-		        return surveyRepo.getSurveyData();
+		 return surveyRepo.getSurveyData();
 	    }
 }
