@@ -59,8 +59,12 @@ public class APIController {
 	        ViewAllRecords record = new ViewAllRecords(firstName, lastName, won, date);
 	        records.add(record);
 	    }
-	    
-	    return new ResponseEntity<>(records, HttpStatus.OK);
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.APPLICATION_JSON);
+
+	    return ResponseEntity.ok()
+	            .headers(headers)
+	            .body(records);
 	}
 
 

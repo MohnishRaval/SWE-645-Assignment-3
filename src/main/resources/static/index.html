@@ -10,7 +10,8 @@
   	  //  headers['Authorization'] = token;
   	  //}
   	function viewAllSurveys() {
-  fetch('/form/viewAllRecords', {
+  		const path=window.location.href;
+  fetch(`${path}form/viewAllRecords`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
