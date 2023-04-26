@@ -6,11 +6,12 @@
     const url = window.location.hostname;
   	const token = 'Bearer token-j2lmq:m8ckms2sx7zfqlzc82jx8gxc98l5j5twgn6g4rzp4dbrqwtlfxzhf9';
   	const headers = {'Content-Type': 'application/json'};
-  	//if (url.indexOf('localhost:8080') === -1) {
-  	  //  headers['Authorization'] = token;
-  	  //}
+  	const path=window.location.href;
+  	let pathWithoutParams = window.location.pathname;
+    history.replaceState(null, null, pathWithoutParams);
+    
+    
   	function viewAllSurveys() {
-  		const path=window.location.href;
   fetch(`${path}form/viewAllRecords`, {
     method: 'GET',
     headers: {
@@ -118,7 +119,7 @@
     		  alert(raffleLostAlertMessage);
     		  response.won=false;
     	  }
-    	  fetch('/form/submit', {
+    	  fetch(`${path}form/submit`, {
               method: 'POST',
               headers: headers,
               body: JSON.stringify(response)
