@@ -23,7 +23,6 @@ pipeline {
             steps {
                script{
                 sh 'mvn install'
-               //  mvn install -DDB_URL=${params.DB_URL} -DDB_USER=${params.DB_USER} -DDB_PASSWORD=${params.DB_PASSWORD}
             }
             }
         }
