@@ -9,35 +9,35 @@
 
 # PROJECT MEMBERS CONTRIBUTION:
 
-## a)Jenkinsfile and pipeline Implementation:Mohnish Raval, Dipak Shetty
+a)Jenkinsfile and pipeline Implementation:Mohnish Raval, Dipak Shetty <br/>
 
-## b)Rancher Cluster creation and creating Deployment:Mohnish Raval,Pranay Sharma,Dipak Shetty,Anand Seshadri
+b)Rancher Cluster creation and creating Deployment:Mohnish Raval,Pranay Sharma,Dipak Shetty,Anand Seshadri <br/>
 
-## c)Dockerfile creation and Implementation:Pranay Sharma,Anand Seshadri
+c)Dockerfile creation and Implementation:Pranay Sharma,Anand Seshadri <br/>
 
-## d)Video Demonstration:Mohnish Raval
+d)Video Demonstration:Mohnish Raval <br/>
 
-## e)Documentation and screenshots: Pranay Sharma, Anand Seshadri
+e)Documentation and screenshots: Pranay Sharma, Anand Seshadri <br/>
 
-## f)Github url and repository setup: Mohnish Raval
+f)Github url and repository setup: Mohnish Raval <br/>
 
-## g)SpringBOOT API development-Mohnish,Anand,Dipak,Pranay
+g)SpringBOOT API development-Mohnish,Anand,Dipak,Pranay <br/>
 
-## h)AWS RDS creation and Connection:Mohnish
+h)AWS RDS creation and Connection:Mohnish <br/>
 
-## g)Maven installation on Jenkins ec2 instance:Anand
+g)Maven installation on Jenkins ec2 instance:Anand <br/>
 
 ---
 
 # PROJECT SUBMISSION ZIP FILE FOLDER STRUCTURE:
 
 The zip file contains the following:
-a)videos folder-contains the video demonstrations of installation and demo of the CI-CD project
-b)Rancher related files folder-contains following:
-i)springcluster.yaml-kubeConfig file of the cluster named springcluster
-ii)springdeployment.yaml-kubeConfig file of the deployment named springdeployment
-c)SWE-645-assignment-3 folder-Contains the whole application containing source code including Dockerfile and Jenkinsfile(This code is already posted on github repo https://github.com/MohnishRaval/SWE-645-Assignment-3)
-d)swe645_HW3_Report-Contains installation of maven,GET and POST API Call output on Postman
+a)videos folder-contains the video demonstrations of installation and demo of the CI-CD project <br/>
+b)Rancher related files folder-contains following: <br/>
+i)springcluster.yaml-kubeConfig file of the cluster named springcluster <br/>
+ii)springdeployment.yaml-kubeConfig file of the deployment named springdeployment <br/>
+c)SWE-645-assignment-3 folder-Contains the whole application containing source code including Dockerfile and Jenkinsfile(This code is already posted on github repo https://github.com/MohnishRaval/SWE-645-Assignment-3) <br/>
+d)swe645_HW3_Report-Contains installation of maven,GET and POST API Call output on Postman <br/>
 
 ---
 
