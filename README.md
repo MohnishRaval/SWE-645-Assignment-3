@@ -9,15 +9,23 @@
 
 # PROJECT MEMBERS CONTRIBUTION:
 
-a)Jenkinsfile and pipeline Implementation:Mohnish Raval, Dipak Shetty
-b)Rancher Cluster creation and creating Deployment:Mohnish Raval,Pranay Sharma,Dipak Shetty,Anand Seshadri
-c)Dockerfile creation and Implementation:Pranay Sharma,Anand Seshadri
-d)Video Demonstration:Mohnish Raval
-e)Documentation and screenshots: Pranay Sharma, Anand Seshadri
-f)Github url and repository setup: Mohnish Raval
-g)SpringBOOT API development-Mohnish,Anand,Dipak,Pranay
-h)AWS RDS creation and Connection:Mohnish
-g)Maven installation on Jenkins ec2 instance:Anand
+## a)Jenkinsfile and pipeline Implementation:Mohnish Raval, Dipak Shetty
+
+## b)Rancher Cluster creation and creating Deployment:Mohnish Raval,Pranay Sharma,Dipak Shetty,Anand Seshadri
+
+## c)Dockerfile creation and Implementation:Pranay Sharma,Anand Seshadri
+
+## d)Video Demonstration:Mohnish Raval
+
+## e)Documentation and screenshots: Pranay Sharma, Anand Seshadri
+
+## f)Github url and repository setup: Mohnish Raval
+
+## g)SpringBOOT API development-Mohnish,Anand,Dipak,Pranay
+
+## h)AWS RDS creation and Connection:Mohnish
+
+## g)Maven installation on Jenkins ec2 instance:Anand
 
 ---
 
