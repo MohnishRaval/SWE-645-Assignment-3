@@ -19,20 +19,11 @@ public class FormDTO {
     
     // fields from Survey class
     private Date surveyDate;
-    private String universityInterest;
     private String recommendation;
     
-    private String comments;
-
     
     // fields from CampusLike class
-    private List<String> Likes;
-    private Boolean optionStudent;
-    private Boolean optionLocation;
-    private Boolean optionCampus;
-    private Boolean optionAtmosphere;
-    private Boolean optionDormRooms;
-    private Boolean optionSports;
+    private List<String> campusLikingArray;
     
     // fields from Raffle class
     private String numbersEntered;

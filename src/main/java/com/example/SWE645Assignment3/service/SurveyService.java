@@ -8,12 +8,12 @@ import com.example.SWE645Assignment3.repository.*;
 import com.example.SWE645Assignment3.dto.*;
 import java.util.*;
 
-@Service
+
 public class SurveyService{
-	@Autowired
-    private SurveyRepository surveyRepo;
-	
-	 public List<?> getSurveyData() {
-		 return surveyRepo.getSurveyData();
-	    }
+//	@Autowired
+//    private SurveyRepository surveyRepo;
+//	
+//	 public List<?> getSurveyData() {
+//		 return surveyRepo.getSurveyData();
+//	    }
 }

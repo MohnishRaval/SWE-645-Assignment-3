@@ -3,7 +3,7 @@ package com.example.SWE645Assignment3.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
+
 @Table(name = "students")
 @Getter
 @Setter
