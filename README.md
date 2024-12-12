@@ -1,3 +1,4 @@
+![aws_proj_diag](https://github.com/user-attachments/assets/659eb1b7-b85c-4fb4-b7c9-f05dd8f87bc8)
 
 ---
 
